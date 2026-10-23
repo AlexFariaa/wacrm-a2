@@ -219,6 +219,14 @@ Paginated. Each message includes its `direction` (`inbound` /
 `content_*`. The conversation is verified to belong to your account
 first (`404` otherwise).
 
+### `GET /api/v1/automation-status`
+
+Account-wide preflight for a separate reply agent. Scope: `conversations:read`.
+Returns `ai_auto_reply_enabled`, `active_automations_count`, and
+`active_flows_count`. Counts are conservative: any active automation or flow
+blocks a separate agent from sending until it is disabled or reviewed.
+The result contains no credentials or other accounts' settings.
+
 ### `POST /api/v1/broadcasts`
 
 Launch a template broadcast to a list of recipients. Scope:
