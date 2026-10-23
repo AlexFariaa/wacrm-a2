@@ -392,6 +392,14 @@ internal targets are refused at delivery time.
 
 ## Roadmap
 
+### Media endpoints (local integration)
+
+`POST /api/v1/media` requires `messages:send` and accepts multipart form data with one `file`. Images (JPEG/PNG) are limited to 5 MB; MP4 video, supported audio, PDF, plain text, DOCX and XLSX are limited to 16 MB. The complete request stream is capped before multipart parsing. Returns `{ data: { url, type, filename } }`; use these values with `POST /api/v1/messages`.
+
+`GET /api/v1/messages/:id/media` requires `messages:read`. The message must belong to the API key's account. This endpoint streams stored attachments or resolves legacy WhatsApp media IDs server-side; it does not expose provider credentials. Downloads are capped at 16 MB and arbitrary remote URLs are rejected. Documents use attachment disposition; safe image/audio/video types may display inline.
+
+## Future work
+
 The public API now covers messaging, contacts, conversations,
 broadcasts, and outbound webhooks — the full scope of
 [#245](https://github.com/ArnasDon/wacrm/issues/245). Future ideas
