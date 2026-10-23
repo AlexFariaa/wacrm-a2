@@ -221,6 +221,14 @@ first (`404` otherwise).
 
 ### `GET /api/v1/automation-status`
 
+### `GET /api/v1/channel`
+
+Scope: `conversations:read`. Returns account-scoped configuration status,
+phone number ID, registration/subscription timestamps and a boolean error
+indicator. Never returns access tokens, verification tokens or secrets.
+
+### Automation preflight
+
 Account-wide preflight for a separate reply agent. Scope: `conversations:read`.
 Returns `ai_auto_reply_enabled`, `active_automations_count`, and
 `active_flows_count`. Counts are conservative: any active automation or flow
