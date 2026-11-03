@@ -27,6 +27,11 @@ services:
       AI_CONTEXT_MESSAGE_LIMIT: ${AI_CONTEXT_MESSAGE_LIMIT:-20}
     expose:
       - '3000'
+    networks:
+      default: {}
+      orbita:
+        aliases:
+          - wacrm
     restart: unless-stopped
     healthcheck:
       test:
@@ -40,3 +45,8 @@ services:
       timeout: 5s
       retries: 3
       start_period: 15s
+
+networks:
+  orbita:
+    external: true
+    name: ${ORBITA_NETWORK_NAME:?ORBITA_NETWORK_NAME is required}
